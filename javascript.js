@@ -96,9 +96,9 @@ function getVerificaNumeroInteiro() {
   // console.log(valor2, Number.isInteger(valor2));
   // console.log(valor3, Number.isInteger(valor3));
   // console.log(valor4, Number.isInteger(valor4));
-  Number.isInteger(valor2) ? console.log(true) : console.log(false);
+  Number.isInteger(valor4) ? console.log(true) : console.log(false);
 }
-// getVerificaNumeroInteiro();
+getVerificaNumeroInteiro();
 
 function getIsNaN() {
   const a = "abc";
@@ -124,6 +124,4 @@ function getIsNaN() {
   console.log(numeroX.toString(), typeof numeroX.toString());
   console.log(numeroX.valueOf(), typeof numeroX.valueOf());
 }
-getIsNaN();
-
-console.log("Teste git");
+// getIsNaN();
