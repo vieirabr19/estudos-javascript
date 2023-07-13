@@ -125,3 +125,5 @@ function getIsNaN() {
   console.log(numeroX.valueOf(), typeof numeroX.valueOf());
 }
 getIsNaN();
+
+console.log("Teste git");
