@@ -52,6 +52,7 @@ function getStartWith() {
   console.log("Tipo:", Object.prototype.toString.call(resultado));
   console.log(resultado);
 }
+// getStartWith();
 
 function getTrim() {
   const nome = " Maria de Souza ";
@@ -78,7 +79,6 @@ function getToString() {
   const valorFlutuante = Number.parseFloat(valor.toFixed(2));
   console.log(valorFlutuante, " - Type:", typeof valorFlutuante);
 }
-// getStartWith();
 
 function getConverterNumeroInteiro() {
   const valor = "3.456";
@@ -98,7 +98,7 @@ function getVerificaNumeroInteiro() {
   // console.log(valor4, Number.isInteger(valor4));
   Number.isInteger(valor4) ? console.log(true) : console.log(false);
 }
-getVerificaNumeroInteiro();
+// getVerificaNumeroInteiro();
 
 function getIsNaN() {
   const a = "abc";
@@ -125,3 +125,53 @@ function getIsNaN() {
   console.log(numeroX.valueOf(), typeof numeroX.valueOf());
 }
 // getIsNaN();
+
+// por construtor
+const objPessoa2 = new Object();
+objPessoa2.nome = "Maria";
+// console.log(objPessoa2.nome);
+
+//Object.create que irá criar um objeto com prototipo
+const objPessoa3 = Object.create(Object.prototype);
+objPessoa3.nome = "João";
+// console.log(objPessoa3.nome);
+
+//funções construtoras
+const obj1 = new Object();
+const obj2 = new Array(1, 2, 3);
+const obj3 = new Date(); //Data atual
+const obj4 = new Error("Ocorreu um erro");
+const obj5 = new RegExp(/teste/);
+const obj6 = new Function(
+  "paramentroNome",
+  "return' olá ' + paramentroNome + '!'"
+);
+// console.log(obj6("Francisca"));
+
+//Criar objeto literal
+
+const objPessoa = {
+  nome: "Maria",
+  cpf: 123456778,
+  dataNasc: new Date(1981, 3, 14),
+  ativo: true,
+  "teste prop": "teste",
+  contatos: [1122334, 23456655, 565444324],
+  endereco: {
+    rua: "Rua A",
+    numero: 1234,
+    cep: 13433322,
+  },
+  saudacao: function () {
+    return `Olá me chamo ${this.nome}`;
+  },
+};
+// console.log(objPessoa);
+// console.log("Contatos:", objPessoa.contatos);
+for (let value of objPessoa.contatos) {
+  console.log(value);
+}
+for (let key in objPessoa.endereco) {
+  console.log(`${key}: ${objPessoa.endereco[key]}`);
+}
+console.log(objPessoa.saudacao());
