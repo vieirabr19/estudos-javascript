@@ -150,28 +150,112 @@ const obj6 = new Function(
 
 //Criar objeto literal
 
-const objPessoa = {
-  nome: "Maria",
-  cpf: 123456778,
-  dataNasc: new Date(1981, 3, 14),
-  ativo: true,
-  "teste prop": "teste",
-  contatos: [1122334, 23456655, 565444324],
-  endereco: {
-    rua: "Rua A",
-    numero: 1234,
-    cep: 13433322,
-  },
-  saudacao: function () {
-    return `Olá me chamo ${this.nome}`;
-  },
-};
-// console.log(objPessoa);
-// console.log("Contatos:", objPessoa.contatos);
-for (let value of objPessoa.contatos) {
-  console.log(value);
+function pessoaFn() {
+  const objPessoa = {
+    nome: "Maria",
+    cpf: 123456778,
+    dataNasc: new Date(1981, 3, 14),
+    ativo: true,
+    "teste prop": "teste",
+    contatos: [1122334, 23456655, 565444324],
+    endereco: {
+      rua: "Rua A",
+      numero: 1234,
+      cep: 13433322,
+    },
+    saudacao: function () {
+      return `Olá me chamo ${this.nome}`;
+    },
+  };
+
+  for (let value of objPessoa.contatos) {
+    console.log(value);
+  }
+  for (let key in objPessoa.endereco) {
+    console.log(`${key}: ${objPessoa.endereco[key]}`);
+  }
+
+  console.log(objPessoa.saudacao());
 }
-for (let key in objPessoa.endereco) {
-  console.log(`${key}: ${objPessoa.endereco[key]}`);
+// pessoaFn();
+
+function verificaSeExistePropriedade() {
+  //verifica se uma propriedade ou método existe no objeto em questão ou em sua cadeia de protótipos
+  const pedido = new Object();
+  pedido.total = 233.45;
+  // console.log("Cliente in pedido:", "cliente" in pedido);
+  // console.log("Cliente pedido:", pedido.cliente);
+  // console.log("Cliente pedido:", pedido.cliente.none);
+  // console.log("Total in pedido:", "total" in pedido);
+
+  //o 'in' verifica se a propriedade ou método existe no objeto e na cadeia de prototipo
+  // console.log("toString in pedido", "toString" in pedido);
+  // console.log(
+  //   "total in pedido com hasOwnProperty",
+  //   pedido.hasOwnProperty("total")
+  // );
+  // console.log(
+  //   "toString in pedido com hasOwnProperty",
+  //   pedido.hasOwnProperty("toString")
+  // );
+
+  pedido.totalItem = 23;
+  console.log(pedido);
+  const itemDeletado = delete pedido.totalItem;
+  console.log(itemDeletado); //retorna true
+  console.log(pedido);
 }
-console.log(objPessoa.saudacao());
+// verificaSeExistePropriedade();
+
+function recebeNomeValoresComObjectKeys() {
+  const produto = { nome: "teste", preco: 12, ativo: true };
+  const chaves = Object.keys(produto);
+
+  console.log("Object.keys(produto):", chaves);
+  console.log("Tipo com typeof:", typeof chaves);
+  console.log(
+    "Object.prototype.toString.call(chaves):",
+    Object.prototype.toString.call(chaves)
+  );
+  console.log("Verifica se é um Array com isArray:", Array.isArray(chaves));
+
+  console.log("=================================");
+
+  const valoresProps = Object.values(produto);
+  console.log("Object.values(produto):", valoresProps);
+
+  console.log("=================================");
+
+  //recuperar as propriedades e valores do objeto
+  const chavesValoresObjeto = Object.entries(produto);
+  console.log("Object.entries(produto):", chavesValoresObjeto);
+  for (let [nome, valor] of chavesValoresObjeto) {
+    console.log(`${nome}: ${valor}`);
+  }
+}
+// recebeNomeValoresComObjectKeys();
+
+function propriedadeGetSetGetOwnPropertyDescriptor() {
+  //criando propriedades de objeto de acesso e dado - atributos de propriedades - métodos acessores get e set.
+  const folhaDePagameto = {
+    _total: 0, //atributo privado
+    set total(val) {
+      this._total = val;
+    },
+    get total() {
+      return this._total;
+    },
+  };
+
+  folhaDePagameto.total = 33278.67;
+  console.log("Total folha pagamento: R$", folhaDePagameto.total);
+  console.log(
+    "Atributos da propriedades do objeto",
+    Object.getOwnPropertyDescriptors(folhaDePagameto)
+  );
+  console.log(
+    "Atributos da propriedades do objeto - getOwnPropertyNames",
+    Object.getOwnPropertyNames(folhaDePagameto)
+  );
+}
+propriedadeGetSetGetOwnPropertyDescriptor();
