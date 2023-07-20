@@ -237,8 +237,9 @@ function recebeNomeValoresComObjectKeys() {
 
 function propriedadeGetSetGetOwnPropertyDescriptor() {
   //criando propriedades de objeto de acesso e dado - atributos de propriedades - métodos acessores get e set.
-  const folhaDePagameto = {
+  const folhaDePagamento = {
     _total: 0, //atributo privado
+    preco: 0,
     set total(val) {
       this._total = val;
     },
@@ -247,15 +248,80 @@ function propriedadeGetSetGetOwnPropertyDescriptor() {
     },
   };
 
-  folhaDePagameto.total = 33278.67;
-  console.log("Total folha pagamento: R$", folhaDePagameto.total);
+  folhaDePagamento.total = 33278.67;
+  // console.log("Total folha pagamento: R$:", folhaDePagamento.total);
   console.log(
-    "Atributos da propriedades do objeto",
-    Object.getOwnPropertyDescriptors(folhaDePagameto)
+    "Atributos das propriedades do objeto - getOwnPropertyDescriptors:",
+    Object.getOwnPropertyDescriptors(folhaDePagamento)
   );
+  const getNamesProps = Object.getOwnPropertyNames(folhaDePagamento);
   console.log(
-    "Atributos da propriedades do objeto - getOwnPropertyNames",
-    Object.getOwnPropertyNames(folhaDePagameto)
+    "Atributos das propriedades do objeto - getOwnPropertyNames:",
+    getNamesProps
   );
+  for (let value of getNamesProps) {
+    console.log(value);
+  }
 }
-propriedadeGetSetGetOwnPropertyDescriptor();
+// propriedadeGetSetGetOwnPropertyDescriptor();
+
+function definePropertyAndPropertyIsEnumerable() {
+  //verificar se uma propriedade é interavel/enumeravel.
+  let obj = { a: "valorA", b: "valorB", c: "valorC", d: "valorD" };
+  // console.log("a in Obj:", "a" in obj);
+  // console.log("obj.propertyIsEnumerable('a'):", obj.propertyIsEnumerable("a"));
+  // console.log("obj.propertyIsEnumerable('toString'):", obj.propertyIsEnumerable("toString"));
+  // console.log("obj.propertyIsEnumerable('length'):", obj.propertyIsEnumerable("length"));
+
+  console.log("==========================");
+
+  console.log(obj);
+
+  for (let [k, val] of Object.entries(obj)) {
+    console.log(k, "-", val);
+  }
+
+  // for (let k in Object.keys(obj)) {
+  //   console.log("Keys In:", k);
+  // }
+  // for (let k of Object.keys(obj)) {
+  //   console.log("Keys Of:", k);
+  // }
+
+  // for (let v in Object.values(obj)) {
+  //   console.log("Values In:", v);
+  // }
+  // for (let v of Object.values(obj)) {
+  //   console.log("Values Of:", v);
+  // }
+
+  console.log("==========================");
+
+  Object.defineProperty(obj, "a", {
+    enumerable: false,
+    configurable: false,
+  });
+
+  for (let [k, val] of Object.entries(obj)) {
+    console.log(k, "-", val);
+  }
+
+  console.log("Deletar propriedade:", delete obj.a);
+
+  //tornar uma propriedade em não gravavel.
+  obj.b = 10;
+  Object.defineProperty(obj, "b", {
+    writable: false,
+  });
+
+  obj.b = 20;
+  console.log("obj.b:", obj.b);
+
+  Object.defineProperty(obj, "c", {
+    value: "valorC Aterado",
+  });
+
+  console.log("obj.c:", obj.c);
+  console.log("obj:", obj);
+}
+definePropertyAndPropertyIsEnumerable();
