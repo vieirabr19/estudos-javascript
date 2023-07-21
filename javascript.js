@@ -324,4 +324,101 @@ function definePropertyAndPropertyIsEnumerable() {
   console.log("obj.c:", obj.c);
   console.log("obj:", obj);
 }
-definePropertyAndPropertyIsEnumerable();
+// definePropertyAndPropertyIsEnumerable();
+
+function definePropertiesAndAttributes() {
+  const aluno = {};
+
+  Object.defineProperties(aluno, {
+    nome: {
+      value: "Maria",
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    },
+    turma: {
+      value: "A",
+      enumerable: true,
+      configurable: false,
+      writable: false,
+    },
+  });
+
+  // console.log(aluno);
+  // aluno.turma = "B";
+  // delete aluno.turma;
+  // console.log(aluno);
+
+  const aluno2 = {};
+  Object.defineProperties(aluno2, {
+    _nome: {
+      value: "Luiz",
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    },
+    nome: {
+      get: function () {
+        return this._nome;
+      },
+      set: function (value) {
+        this._nome = value;
+      },
+    },
+  });
+
+  console.log(aluno2);
+  aluno2.nome = "João";
+  console.log(aluno2);
+}
+// definePropertiesAndAttributes();
+
+function getOwnPropertyDescriptorAndGetOwnPropertyDescriptors() {
+  //recuperar as informações de atributos de propriedades
+  const objCarro = { marca: "Fiat", cor: "preta" };
+
+  console.log(
+    "0 => Object.getOwnPropertyDescriptors(objCarro):",
+    Object.getOwnPropertyDescriptors(objCarro)
+  );
+  console.log(
+    "1 => Object.getOwnPropertyDescriptor(objCarro, 'marca'):",
+    Object.getOwnPropertyDescriptor(objCarro, "marca")
+  );
+
+  console.log("===========================================");
+
+  Object.defineProperty(objCarro, "cor", {
+    enumerable: false,
+    configurable: false,
+    writable: false,
+  });
+
+  console.log(
+    "2 => Object.getOwnPropertyDescriptors(objCarro):",
+    Object.getOwnPropertyDescriptors(objCarro)
+  );
+  console.log(
+    "3 => Object.getOwnPropertyDescriptor(objCarro, 'cor'):",
+    Object.getOwnPropertyDescriptor(objCarro, "cor")
+  );
+  console.log(
+    "3 => Object.getOwnPropertyDescriptor(objCarro, 'toString'):",
+    Object.getOwnPropertyDescriptor(objCarro, "toString")
+  );
+  console.log(
+    "3 => Object.getOwnPropertyDescriptor(objCarro, 'length'):",
+    Object.getOwnPropertyDescriptor(objCarro, "length")
+  );
+  console.log(
+    "3 => Object.getOwnPropertyDescriptor(objCarro, 'placa'):",
+    Object.getOwnPropertyDescriptor(objCarro, "placa")
+  );
+
+  console.log("===========================================");
+
+  const retorno = Object.getOwnPropertyDescriptor(objCarro, "marca");
+  console.log(retorno);
+  console.log(Object.prototype.toString.call(retorno));
+}
+getOwnPropertyDescriptorAndGetOwnPropertyDescriptors();
