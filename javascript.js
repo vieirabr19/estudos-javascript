@@ -421,4 +421,51 @@ function getOwnPropertyDescriptorAndGetOwnPropertyDescriptors() {
   console.log(retorno);
   console.log(Object.prototype.toString.call(retorno));
 }
-getOwnPropertyDescriptorAndGetOwnPropertyDescriptors();
+// getOwnPropertyDescriptorAndGetOwnPropertyDescriptors();
+
+function objPreventExtensionsAndIsExtensible() {
+  //travar objeto para ficar não extensível - não permitir adicionar propriedade ao memso.
+  const objMoto = { marca: "Honda", cor: "vermelha" };
+  console.log(
+    "Object.getOwnPropertyDescriptor(objMoto):",
+    Object.getOwnPropertyDescriptors(objMoto)
+  );
+  console.log("Object.isExtensible(objMoto)", Object.isExtensible(objMoto));
+
+  console.log("===========================================");
+
+  // console.log(Object.preventExtensions(objMoto));
+  objMoto.placa = "AAA-1234";
+  objMoto.ligar = function () {
+    return "Moto ligada!";
+  };
+  console.log(
+    "Object.getOwnPropertyDescriptor(objMoto):",
+    Object.getOwnPropertyDescriptors(objMoto)
+  );
+  console.log("Object.isExtensible(objMoto):", Object.isExtensible(objMoto));
+  objMoto.cor = "preta";
+  console.log(
+    "Object.getOwnPropertyDescriptor(objMoto):",
+    Object.getOwnPropertyDescriptors(objMoto)
+  );
+
+  console.log("===========================================");
+
+  Object.defineProperty(objMoto, "chassi", { value: "12345678" });
+  console.log("Object.isExtensible(objMoto):", Object.isExtensible(objMoto));
+  console.log(
+    "Object.getOwnPropertyDescriptor(objMoto):",
+    Object.getOwnPropertyDescriptors(objMoto)
+  );
+
+  console.log("===========================================");
+
+  console.log(objMoto);
+}
+// objPreventExtensionsAndIsExtensible();
+
+function objectSealAndisSealed() {
+  console.log("===========================================");
+}
+objectSealAndisSealed();
