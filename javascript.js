@@ -434,7 +434,7 @@ function objPreventExtensionsAndIsExtensible() {
 
   console.log("===========================================");
 
-  // console.log(Object.preventExtensions(objMoto));
+  console.log(Object.preventExtensions(objMoto));
   objMoto.placa = "AAA-1234";
   objMoto.ligar = function () {
     return "Moto ligada!";
@@ -465,7 +465,111 @@ function objPreventExtensionsAndIsExtensible() {
 }
 // objPreventExtensionsAndIsExtensible();
 
-function objectSealAndisSealed() {
+function objectSealAndIsSealed() {
+  // como selar um objeto - um objeto selado não é extensivel (não pode add prop)
+  // e também as propriedades não são configuraveis (não é possivel deletar prop)
+  const objLivro = { titulo: "Javascript", paginas: 1234 };
+
+  console.log("Object.isExtensible(objLivro)?", Object.isExtensible(objLivro));
+  console.log("Object.isSealed(objLivro)?", Object.isSealed(objLivro));
+
   console.log("===========================================");
+
+  console.log(
+    "Object.getOwnPropertyDescriptors(objLivro):",
+    Object.getOwnPropertyDescriptors(objLivro)
+  );
+
+  console.log(
+    "Selando o objeto (Object.seal(objLivro)):",
+    Object.seal(objLivro)
+  );
+
+  console.log("Object.isExtensible(objLivro)?", Object.isExtensible(objLivro));
+  console.log("Object.isSealed(objLivro)?", Object.isSealed(objLivro));
+
+  console.log("===========================================");
+
+  objLivro.ebook = true;
+
+  console.log(
+    "Add - objLivro.hasOwnProperty('ebook')?",
+    objLivro.hasOwnProperty("ebook")
+  );
+  console.log("delete objLivro.titulo: ", delete objLivro.titulo);
+  console.log(
+    "objLivro.hasOwnProperty('titulo')",
+    objLivro.hasOwnProperty("titulo")
+  );
+
+  console.log("===========================================");
+
+  objLivro.paginas = 1498;
+  console.log(
+    "Object.getOwnPropertyDescriptors(objLivro):",
+    Object.getOwnPropertyDescriptors(objLivro)
+  );
+
+  console.log("===========================================");
+
+  console.log(
+    Object.defineProperty(objLivro, "paginas", { configurable: true })
+  );
 }
-objectSealAndisSealed();
+// objectSealAndIsSealed();
+
+function objectFreezeAndIsFrozen() {
+  // congelando objecto, irá ficar: não extensivel, não configuravel e não será possivel gravar dados.
+  // não pode ser adicionar propriedades, não deletar  propriedades e nem setar dados na propriedade.
+  // o objeto será apenas leitura.
+  // depois de congelado não pode reverter o processo
+  // o congelamento afeta apenas o objeto em questão e não a cadeia de protótipos
+  const objArtigo = { autor: "Luiz", titulo: "javascript" };
+
+  console.log("Object.isFrozen(objArtigo)?", Object.isFrozen(objArtigo));
+  console.log(
+    "Object.isExtensible(objArtigo)?",
+    Object.isExtensible(objArtigo)
+  );
+  console.log("Object.isSealed(objArtigo)?", Object.isSealed(objArtigo));
+
+  console.log("===========================================");
+
+  console.log(
+    "Congelando o objeto (Object.freeze(objArtigo)):",
+    Object.freeze(objArtigo)
+  );
+
+  console.log("Object.isFrozen(objArtigo)?", Object.isFrozen(objArtigo));
+  console.log(
+    "Object.isExtensible(objArtigo)?",
+    Object.isExtensible(objArtigo)
+  );
+  console.log("Object.isSealed(objArtigo)?", Object.isSealed(objArtigo));
+
+  console.log("===========================================");
+
+  console.log(
+    "Object.getOwnPropertyDescriptors(objArtigo)",
+    Object.getOwnPropertyDescriptors(objArtigo)
+  );
+
+  console.log("===========================================");
+
+  //add
+  objArtigo.paginas = 10;
+  objArtigo.titulo = "PHP";
+  console.log("delete objArtigo.titulo:", delete objArtigo.titulo);
+  console.log(
+    "Object.getOwnPropertyDescriptors(objArtigo):",
+    Object.getOwnPropertyDescriptors(objArtigo)
+  );
+
+  const arr = [];
+  for (var key in objArtigo) {
+    console.log(objArtigo[key]);
+    arr.push(objArtigo[key]);
+  }
+  console.log(arr);
+}
+objectFreezeAndIsFrozen();
