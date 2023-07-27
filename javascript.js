@@ -572,4 +572,94 @@ function objectFreezeAndIsFrozen() {
   }
   console.log(arr);
 }
-objectFreezeAndIsFrozen();
+// objectFreezeAndIsFrozen();
+
+function getArray() {
+  const arr = [];
+  arr.push(10, 20); //adiciona elementos no final do array
+  // console.log(arr);
+
+  arr.unshift(1, 2, 3, 4, 5); //adiciona elementos no inicio do array
+  // console.log(arr);
+
+  console.log("===========================================");
+
+  arrB = ["a", "b", "c", "d", "e", "f", "g", "h"];
+  console.log("ArrB:", arrB);
+  console.log("ArrB.length:", arrB.length);
+
+  console.log("=================== delete arrB[3] ========================");
+
+  console.log("delete arrB[3]:", delete arrB[3]); // deleta o elemento, mas não deleta a posição, deixando a posição vazia.
+  console.log("ArrB:", arrB);
+  console.log("ArrB.length:", arrB.length);
+
+  console.log("================== arrB.pop() ==========================");
+
+  console.log("arrB.pop():", arrB.pop()); // deleta o ultimo elemento e posição do array.
+  console.log("ArrB:", arrB);
+  console.log("ArrB.length:", arrB.length);
+
+  console.log("================== arrB.shift() =========================");
+
+  console.log("arrB.shift():", arrB.shift()); // deleta o primeiro elemento e posição do array.
+  console.log("ArrB:", arrB);
+  console.log("ArrB.length:", arrB.length);
+
+  console.log("=================== arrB.splice(2,1) ========================");
+
+  console.log("arrB.splice(2,1):", arrB.splice(2, 1)); // deleta um elemento de uma posição especiafica do array.
+  console.log("ArrB:", arrB);
+  console.log("ArrB.length:", arrB.length);
+
+  console.log("=================== arrC ========================");
+
+  //modificando um array via propriedade length e bloqueando a mesma para gravação.
+  //a propriedade length pode ser alterada seu valor.
+  const arrC = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  console.log("arrC:", arrC);
+  console.log("arrC.length:", arrC.length);
+
+  console.log("=================== arrD ========================");
+
+  //diferença entre proprieadades e elementos de um array.
+  const arrD = [];
+  arrD[0] = 0;
+  arrD.push(1);
+  console.log("arrD:", arrD);
+  console.log("arrD.length:", arrD.length);
+
+  console.log("===========================================");
+
+  arrD["2"] = 2;
+  console.log("arrD:", arrD);
+  console.log("arrD.length:", arrD.length);
+
+  console.log("===========================================");
+
+  arrD[-3] = -3;
+  arrD["quatro"] = 4;
+  arrD.seis = 6;
+  console.log("arrD:", arrD);
+  console.log("arrD.length:", arrD.length);
+
+  for (var index in arrD) {
+    console.log(index, " = ", arrD[index]);
+  }
+
+  console.log("===========================================");
+
+  Object.defineProperty(arrD, "-3", { enumerable: false });
+  Object.defineProperty(arrD, "quatro", { enumerable: false });
+  Object.defineProperty(arrD, "seis", { enumerable: false });
+
+  for (var index in arrD) {
+    console.log(index, " = ", arrD[index]);
+  }
+
+  console.log(
+    "Object.getOwnPropertyDescriptors(arrD):",
+    Object.getOwnPropertyDescriptors(arrD)
+  );
+}
+getArray();
