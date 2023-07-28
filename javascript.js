@@ -661,5 +661,97 @@ function getArray() {
     "Object.getOwnPropertyDescriptors(arrD):",
     Object.getOwnPropertyDescriptors(arrD)
   );
+
+  console.log("=================== myArray ========================");
+
+  const myArray = [
+    1,
+    2,
+    3,
+    "a",
+    "b",
+    "c",
+    [1, "a"],
+    null,
+    { nome: "Maria" },
+    true,
+    2.2,
+    undefined,
+  ];
+
+  myArray.teste = "teste";
+  myArray[-1] = "teste 2";
+
+  // for tradicional
+  for (var i = 0; i < myArray.length; i++) {
+    console.log("Index:", i, "Valor:", myArray[i]);
+    if (i === myArray.length - 1) {
+      console.log("myArray.length:", myArray.length);
+    }
+  }
+
+  console.log(
+    "myArray[i] === null || myArray[i] === undefined ==========================================="
+  );
+
+  // não interar nos indices com valores (null e undefined)
+  for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i] === null || myArray[i] === undefined) continue;
+
+    console.log("Index:", i, "Valor:", myArray[i]);
+
+    if (i === myArray.length - 1) {
+      console.log("myArray.length:", myArray.length);
+    }
+  }
+
+  console.log("!myArray[i] ===========================================");
+
+  // não interar nos indices com valores (null e undefined)
+  //valores que retornam false: (null, undefined, false, 0 e NaN)
+  for (var i = 0; i < myArray.length; i++) {
+    if (!myArray[i]) continue;
+
+    console.log("Index:", i, "Valor:", myArray[i]);
+    if (i === myArray.length - 1) {
+      console.log("myArray.length:", myArray.length);
+    }
+  }
+
+  console.log("for in ===========================================");
+
+  for (const key in myArray) {
+    //o for in também intera em propriedades herdadas.
+    if (!myArray.hasOwnProperty(key)) continue;
+    console.log("Key:", key, "- Valor:", myArray[key]);
+  }
+
+  console.log(
+    "for in - !isNaN(key) ==========================================="
+  );
+
+  for (const key in myArray) {
+    //o for in também intera em propriedades herdadas.
+    if (!myArray.hasOwnProperty(key) || isNaN(key) || key < 0) continue;
+    console.log("Key:", key, "- Valor:", myArray[key]);
+  }
+
+  console.log("=================== forEach ========================");
+  //forEach metodo adicionado no ECMAScript 5 no array.prototype.
+  const vendaItens = [
+    { codico: 1, preco: 2.2, qtde: 2 },
+    { codico: 2, preco: 7.99, qtde: 5 },
+    { codico: 3, preco: 12, qtde: 3 },
+  ];
+  let totalVendas = 0;
+
+  vendaItens.forEach((item, index, array) => {
+    subTotalVendas = item.qtde * item.preco;
+    totalVendas += subTotalVendas;
+    item.subTotalVendas = subTotalVendas;
+  });
+
+  console.log("totalVendas:", totalVendas);
+  console.log("subTotalVendas:", vendaItens);
 }
 getArray();
