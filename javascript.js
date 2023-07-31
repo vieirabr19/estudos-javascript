@@ -746,12 +746,59 @@ function getArray() {
   let totalVendas = 0;
 
   vendaItens.forEach((item, index, array) => {
-    subTotalVendas = item.qtde * item.preco;
+    let subTotalVendas = item.qtde * item.preco;
     totalVendas += subTotalVendas;
     item.subTotalVendas = subTotalVendas;
   });
 
   console.log("totalVendas:", totalVendas);
   console.log("subTotalVendas:", vendaItens);
+
+  console.log(
+    "=================== array multidimencional ========================"
+  );
+
+  const produtos = [
+    [{ condigo: 28, nome: "Camisa 1" }, ["Amarelo", "Azul", "Vermelho"]],
+    [{ condigo: 29, nome: "Camisa 2" }, ["Branco", "Preto", "Vermelho"]],
+  ];
+
+  console.log(
+    "Nome:",
+    produtos[0][0].nome,
+    "- Cores:",
+    produtos[0][1].toString()
+  );
+  console.log(
+    "Nome:",
+    produtos[0][0].nome,
+    "- Cores:",
+    produtos[0][1].join(", ")
+  );
+
+  console.log(
+    "=== converter em string - toString(), join() e toLocaleString('pt-BR') ==="
+  );
+
+  const arrAll = [1, "A", true, new Date()];
+  console.log("arrAll:", arrAll);
+  console.log("arrAll.toString():", arrAll.toString());
+  console.log("arrAll.join():", arrAll.join());
+  console.log("arrAll.toLocaleString():", arrAll.toLocaleString("pt-BR"));
+
+  console.log("=================== forEach ========================");
+
+  var dataString = new Date();
+  console.log(dataString);
+  const ano = dataString.getFullYear();
+  const mes = dataString.getMonth() + 1;
+  const dia = dataString.getDate();
+  const formattedDate =
+    dia.toString().padStart(2, "0") +
+    "/" +
+    mes.toString().padStart(2, "0") +
+    "/" +
+    ano;
+  console.log(formattedDate);
 }
 getArray();
