@@ -786,7 +786,7 @@ function getArray() {
   console.log("arrAll.join():", arrAll.join());
   console.log("arrAll.toLocaleString():", arrAll.toLocaleString("pt-BR"));
 
-  console.log("=================== forEach ========================");
+  console.log("=================== Formatando Data ========================");
 
   var dataString = new Date();
   console.log(dataString);
@@ -800,5 +800,125 @@ function getArray() {
     "/" +
     ano;
   console.log(formattedDate);
+
+  console.log("=================== ARRAY.SORT ========================");
+  // Array.sort() - método ordena os elementos de um array convertendo para string e
+  // ordenando conforme a tabela unicode.
+  const letras = ["q", "b", "h", "a", "i", "B", "c", "z", "e"];
+  console.log(letras);
+  console.log(
+    letras.sort((x, y) => {
+      const letraX = x.toLowerCase();
+      const letraY = y.toLowerCase();
+      if (letraX < letraY) return -1;
+      if (letraX > letraY) return 1;
+      return 0;
+    })
+  );
+
+  console.log("=================== ARRAY.SLICE ========================");
+  // Array.slice() - método que retorna parte de um array com base em um indice inicial e final.
+  // ele não altera o array original, retornando um novo array.
+  const arrProdutos = [
+    "Produto 1",
+    "Produto 2",
+    "Produto 3",
+    "Produto 4",
+    "Produto 5",
+    "Produto 6",
+    "Produto 7",
+    "Produto 8",
+  ];
+  console.log("arrProdutos:", arrProdutos);
+  console.log("arrProdutos:", arrProdutos.slice(0, 3 + 1));
+  console.log("arrProdutos:", arrProdutos.slice(3, arrProdutos.length));
+  console.log("arrProdutos:", arrProdutos.slice(3));
+
+  console.log("=================== ARRAY.SPLICE ========================");
+  // Array.splice() - método permite adicionar novos elementos em um array e ao mesmo tempo remove elementos antigos.
+  // :parametros (três).
+  // 1 - indice para indicar a inserção de novos elementos
+  // 2 - quantidade de elementos a serem removidos
+  // 3 - novos elementos
+  // Obs.: o splice alterar o array original e retorna apenas os elementos removidos
+
+  let numSplice = [1, 2, 3, 4, 5, 6, 7, 8];
+  console.log("numSplice:", numSplice);
+  console.log("numSplice.splice(2):", numSplice.splice(2)); //remove [ 3, 4, 5, 6, 7, 8 ] e retorna [ 1, 2 ]
+  console.log("numSplice:", numSplice);
+
+  console.log("===========================================");
+
+  numSplice = [1, 2, 3, 4, 5, 6, 7, 8];
+  console.log("numSplice:", numSplice);
+  console.log("numSplice.splice(2):", numSplice.splice(2, 5)); //remove [ 3, 4, 5, 6, 7 ] e retorna [ 1, 2, 8 ]
+  console.log("numSplice:", numSplice);
+
+  console.log("===========================================");
+
+  console.log("numSplice:", numSplice.splice(0, 0, "a", "b", "c"));
+  console.log("numSplice:", numSplice);
+
+  console.log("numSplice:", numSplice.splice(4, 0, "d", "e", "f"));
+  console.log("numSplice:", numSplice);
+
+  console.log(
+    "numSplice:",
+    numSplice.splice(numSplice.length, 0, 3, 4, 5, 6, 7)
+  );
+  console.log("numSplice:", numSplice);
+
+  console.log("=================== ARRAY.MAP ========================");
+  // ECMAScript 5
+  // Array.map() - método intera por todos os elementos de um array com valores atribuidos e que não sejam undefined.
+  // recebe uma faução callback por parametro no qual é chamada para item/elemento do array.
+  // a fução pode receber até 3 parametros.
+  // 1 - valor - elemento array.
+  // 2 - índice do elemento array
+  // 3 - o proprio array.
+  // em cada interação a função callback irá retornar um valor que irá compor um novo array retornado pelo map.
+  // não modifica o array original.
+  // para que o map intere no array, ele faz uma espécie de cópia temporária, caso seja adcionado ou
+  // removido item do array depois do laço do map iniciar tais elementos não serão visível pelo map.
+
+  const numerosMap = [2, 4, 8, 10, 12];
+  console.log("numerosMap:", numerosMap);
+
+  const novoArrayMap = numerosMap.map((item) => item * 2);
+  console.log("novoArrayMap:", novoArrayMap);
+
+  console.log("=================== ARRAY.FILTER ========================");
+  // ECMAScript 5
+  // Array.filter() - método intera por todos os elementos de um array com valores atribuidos e que não sejam undefined.
+  // retorna um novo array com base em um retorno booleano (true) de cada interação.
+  // recebe uma fanção callback por parametro no qual é chamada para cada elemento do array.
+  // a função pode receber até 3 parametros.
+  // 1 - valor - elemento array.
+  // 2 - inidice do elemento
+  // 3 - o proprio array.
+
+  const numerosFilter = [2, 9, 5, 4, 1, 0, 7, 6, 15];
+
+  const numerosFilterNovo = numerosFilter.filter((item) => item > 5);
+  console.log("numerosFilterNovo:", numerosFilterNovo);
+  console.log("numerosFilter:", numerosFilter);
+
+  console.log("===========================================");
+  const nomesFilter = [
+    "Maria",
+    "João",
+    "Pedro",
+    "Flávio",
+    "Fernanda",
+    "Carla",
+    "Marta",
+  ];
+  console.log("nomesFilter:", nomesFilter);
+
+  const regExp = new RegExp("A", "ig");
+
+  const nomesPesquisa = nomesFilter.filter((nome) => regExp.test(nome));
+  console.log("nomesPesquisa:", nomesPesquisa);
+  console.log("nomesFilter:", nomesFilter);
 }
 getArray();
