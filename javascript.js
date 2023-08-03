@@ -920,5 +920,75 @@ function getArray() {
   const nomesPesquisa = nomesFilter.filter((nome) => regExp.test(nome));
   console.log("nomesPesquisa:", nomesPesquisa);
   console.log("nomesFilter:", nomesFilter);
+
+  console.log("=================== ARRAY.EVERY ========================");
+  // ECMAScript 5
+  // Array.every() - método testa se todos os elementos do array passam pelo teste de implementação pela função fornecida.
+  // retorna true ou false, sendo que irá retornar true somente se todos os testes retornarem true.
+  // recebe uma fanção callback por parametro no qual é chamada para cada elemento do array.
+  // a função pode receber até 3 parametros.
+  // 1 - valor - elemento array.
+  // 2 - inidice do elemento
+  // 3 - o proprio array.
+
+  const numerosEvery = [2, 9, 4, 3, 1, 0, 7, 6, 15, 20];
+  console.log("numerosEvery:", numerosEvery);
+
+  console.log(
+    "numerosEvery.every((item):",
+    numerosEvery.every((item) => item < 16)
+  );
+
+  console.log("=================== ARRAY.SOME ========================");
+  // ECMAScript 5
+  // Array.some() - método testa alguns dos elementos do array passam pelo teste de implementação pela função fornecida.
+  // retorna true ou false, sendo que irá retornar true somente se pelo menos um elemento do array retornar true.
+  // recebe uma fanção callback por parametro no qual é chamada para cada elemento do array.
+  // a função pode receber até 3 parametros.
+  // 1 - valor - elemento array.
+  // 2 - inidice do elemento
+  // 3 - o proprio array.
+
+  const numerosSome = [2, 9, 4, 3, 1, 0, 7, 6, 15, 20];
+  console.log("numerosEvery:", numerosSome);
+
+  console.log(
+    "numerosSome.some((item):",
+    numerosSome.some((item) => item >= 21)
+  );
+
+  console.log(
+    "=================== ARRAY.REDUCE E REDUCERIGHT ========================"
+  );
+  // ECMAScript 5
+  // Array.reduce()/reduceRight - método intera por todos os elementos de um array, tendo como objetivo
+  // principal tudo a um único valor no qual será o retorno da função.
+  // recebe uma fanção callback e um valor inicial para o seu acumulador.
+  // a função callback recebe 4 parametros na qual  é chamada para cada elemento do array.
+  // 1 - acumulador, no qual irá reter o valor oriundo do retorno de cada interação.
+  // 2 - valor do elemento
+  // 3 - inidice do elemento no array
+  // 4 - o proprio array.
+
+  // OBS 1.: O valor inicial do acumulador na interação pode ser um vamor especifico que deve ser passado
+  // como o segundo parametro junto a função callback para o método reduce.
+  // Caso não seja informado, ele assumirá como valor inicial o valor presente no primeiro elemento da iteração.
+
+  // OBS 2.: O reduceRight irá fazer o mesmo que o reduce, porém irá iniciar a interação na ordem inversa do array,
+  // começando do último elemento para o primeiro.
+
+  const numerosReduce = [1, 2, 3, 4, 5];
+  console.log("numerosReduce:", numerosReduce);
+
+  const retornoReduce = numerosReduce.reduce(
+    (acumulador, elementoArry, indice, array) => {
+      const arrNew = [];
+      arrNew.push(acumulador + elementoArry);
+      return arrNew;
+    },
+    0
+  );
+
+  console.log("retornoReduce:", retornoReduce);
 }
 getArray();
