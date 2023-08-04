@@ -990,5 +990,28 @@ function getArray() {
   );
 
   console.log("retornoReduce:", retornoReduce);
+
+  console.log(
+    "=================== ARRAY.INDEXOF E LASTINDEXOF ========================"
+  );
+  // indexOf e lastIndexOf
+  // Procura um valor especifico em um aaray e retorna seu indice.
+
+  const nomesIndexOf = ["Maria", "Jose", "Paulo", "Fabio", "Antonio"];
+
+  function pesquisaIndexOf(nome) {
+    const nomeSearch = nomesIndexOf.indexOf(nome);
+    if (nomeSearch == -1) {
+      return "Nome não encontrados!";
+    } else {
+      return nomesIndexOf[nomeSearch];
+    }
+  }
+
+  const pesquisaRes = pesquisaIndexOf("Paulo");
+  console.log("pesquisaRes:", pesquisaRes);
+
+  const pesquisaRes2 = pesquisaIndexOf("Carlos");
+  console.log("pesquisaRes:", pesquisaRes2);
 }
 getArray();
