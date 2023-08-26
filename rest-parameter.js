@@ -15,7 +15,7 @@ function mostraNome() {
   console.log(nomeCompleto);
 }
 
-mostraNome("Luiz", "Vieira", "Brasil");
+mostraNome("Pedro", "Augusto", "Brasil");
 
 function mostraNomeResParameter(...nomes) {
   let nomeCompleto = "";
@@ -23,4 +23,4 @@ function mostraNomeResParameter(...nomes) {
   console.log(nomeCompleto);
 }
 
-mostraNomeResParameter("Luiz", "Vieira", "Brasil");
+mostraNomeResParameter("João", "Vieira", "Silva");
