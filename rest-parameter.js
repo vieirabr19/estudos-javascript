@@ -24,3 +24,19 @@ function mostraNomeResParameter(...nomes) {
 }
 
 mostraNomeResParameter("João", "Vieira", "Silva");
+
+console.log("==============");
+
+function somarNumeros(...operandos) {
+  let somar = operandos.reduce((acc, cur, index, arr) => {
+    return (acc += cur);
+  });
+
+  console.log("operandos: ", operandos);
+  console.log("SOMAR: ", somar);
+}
+
+const numeros = [10, 12, 20];
+
+somarNumeros(...numeros);
+somarNumeros(10, 12, 20);
